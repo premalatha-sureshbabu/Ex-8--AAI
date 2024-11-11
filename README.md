@@ -1,5 +1,5 @@
- <H3>ENTER YOUR NAME</H3>
-<H3>ENTER YOUR REGISTER NO.</H3>
+ <H3>NAME:PREMA LATHA S</H3>
+<H3>REGISTER NO.: 212222230112</H3>
 <H3>EX. NO.8</H3>
 <H3>DATE:</H3>
 <H1 ALIGN =CENTER>Implementation of Speech Recognition</H1>
@@ -22,9 +22,35 @@ Step 11: Perform speech recognition with exceptional handling:<Br>
 •	A generic exception block captures any other unexpected errors.<Br>
 <H3>Program:</H3>
 
-Insert your code her
+```
+import speech_recognition as sr
+import pyaudio
+def record_audio():
+    r=sr.Recognizer()
+    r.energy_threshold = 6000
+    voicedata=''
+    try:
+        with sr.Microphone() as source:
+            audio=r.listen(source)
+            voicedata=r.recognize_google(audio)            
+    except sr.UnknownValueError:
+        print("Unable to Recognize Audio")
+    except sr.RequestError:
+        print("Unable to find the Resource")
+    return voicedata
+while True:
+    print("Say Something ....")
+    text=record_audio()
+    print(text)
+    if text=="stop" or text=="close" or text=="exit":
+        exit(1)
+```
 
 <H3> Output:</H3>
-Show the results here
+
+![Screenshot 2024-10-29 104213](https://github.com/user-attachments/assets/0eecc8ee-4bff-438d-8867-bbfa8df2fce9)
+
 
 <H3> Result:</H3>
+
+Thus, we have implemented a program that will transcribe the audio file in the file variable and print the transcribed text on the console, one line at a time.
